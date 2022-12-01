@@ -1,0 +1,57 @@
+/*
+    Tablas para 
+*/
+body{
+    font-family: sans-serif;
+    margin: 0;
+    background-color: rgb(46, 51, 73);
+}
+header{
+    display: flex;
+    height: 70px;
+    background-color: rgb(37, 42, 64);
+    justify-content: space-between;
+    color: whitesmoke;
+    padding-left: 25px;
+}
+button{
+    color: whitesmoke;
+    background-color: rgb(24, 30, 54);
+    margin: 10px;
+    border-color: whitesmoke;
+    border-radius: 10px;
+    
+}
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+   
+}
+
+table{
+    margin-top: 50px;
+    caption-side: bottom;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+
+}
+
+th{
+   background-color: whitesmoke;
+   color: black;
+}
+
+td, th{
+    border: 1px solid whitesmoke;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+td{
+    color: white;
+    background-color: rgb(24, 30, 54);
+}
