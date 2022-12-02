@@ -1,23 +1,19 @@
-import '../app.css'
+import { useState } from 'react';
+import '../app.css';
 
-export const Renglon = () => {
+export const Renglon = ({nodo}) => {
+  const {B, Fecha, G, Peso, R} = nodo;
+  let rgb = `${R}, ${G}, ${B}`
+  let peso = Peso
+  let fecha = Fecha
+  
   return (
     <>
-        <tr>
-            <td>Azul</td>
-            <td>10000000gr</td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <td>Morado</td>
-            <td>200gr</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Verde</td>
-            <td>400gr</td>
-            <td>3</td>
-        </tr>
+      <tr>
+        <td>{rgb}</td>
+        <td>{peso}</td>
+        <td>{fecha}</td>
+      </tr>
     </>
   )
 }
