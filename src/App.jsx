@@ -1,37 +1,48 @@
 import './app.css'
 import { Renglon } from './components/Renglon'
 import { useEffect } from 'react';
-import {database} from './lib/init-firebase'
-import {ref, onValue} from 'firebase/database'
+import { database } from './lib/init-firebase'
+import { ref, onValue } from 'firebase/database'
 
-function App() {
+
+const App = () => {
   //Objeto que recibe los datos
-  var aux = []
   var nodos = []
-  
+  let keys_array = []
+
   //useEffect(() => {
-    //Metodo get para obtener los datos
-    const referenciaDB = ref(database, 'pruebas/');
-    onValue(referenciaDB, (snapshot) => {
-      const data = snapshot.val();
-      const values = Object.values(data);
-      nodos = values;
-    })
+  //Metodo get para obtener los datos
+  const referenciaDB = ref(database, 'pruebas/');
+  onValue(referenciaDB, (snapshot) => {
+    const data = snapshot.val();
+    const values = Object.values(data);
+    const keys = Object.keys(data);
+    //console.log(keys)
+    nodos = values;
+    keys_array = keys;
+  })
+  //}, [nodos, keys_array])
+
+  const procesar_objetos = (nodos, keys_array) => nodos.map( (nodo, i) => [nodo, keys_array[i]] );
+
+  const elementos = procesar_objetos(nodos, keys_array)
+
+  console.log(elementos)
+
   //}, [aux])
 
-  const generarId = () => {
-    const random = Math.random().toString(36).substr(2);
-    const fecha = Date.now().toString(36);
+  /*const generarId = () => {
+    id = id+1;
 
-    return random + fecha;
-  }
+    return id;
+  }*/
 
 
   return (
     <>
       <header>
-          <h1>Separador de textiles</h1>
-          <button>Descargar</button>
+        <h1>Separador de textiles</h1>
+        <button>Descargar</button>
       </header>
 
       <table>
@@ -42,20 +53,21 @@ function App() {
             <th>Fecha</th>
           </tr>
         </thead>
-        
+
         <tbody>
-          {nodos.map(nodo => {
-            return(
-              <Renglon 
-                nodo={nodo}
-                key={generarId}
-              />
-            )
-          })}
+          {
+            elementos.map( elemento => {
+              return(
+              <Renglon
+              nodo={elemento[0]}
+              key={elemento[1]}
+            />)
+            } )
+          }  
         </tbody>
       </table>
     </>
   )
-}
+  }
 
 export default App
